@@ -153,6 +153,12 @@ async function capturePageAsPDF() {
         checkForMp3Files();
     });
 
+    if (window.autoDownloadObserver) {
+        window.autoDownloadObserver.disconnect();
+    }
+
+    window.autoDownloadObserver = observer;
+
     // Start observing changes in the DOM
     observer.observe(document.body, {
         childList: true,        // Look for added or removed elements
