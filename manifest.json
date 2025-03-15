@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Test Lesson Crawler",
+  "version": "1.1",
+  "description": "This extension saves the content of the page as a PDF and crawl the audio files.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads",
+    "tabs",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module",
+    "persistent": true
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["jspdf.umd.min.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
